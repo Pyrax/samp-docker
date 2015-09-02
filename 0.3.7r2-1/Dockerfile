@@ -16,8 +16,7 @@ RUN wget http://files.sa-mp.com/$SAMP_VERSION.tar.gz \
 
 WORKDIR /samp-srv
 
-EXPOSE 7777/udp
-
 COPY docker-entrypoint.sh /
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+EXPOSE 7777/udp
