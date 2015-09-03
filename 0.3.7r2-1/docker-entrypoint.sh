@@ -10,6 +10,7 @@ if [ "$1" = 'samp' ]; then
     # As values of environment variables may contain whitespaces the IFS needs to be overwritten
     OLDIFS=$IFS
     IFS=$'\n'
+    OLDARGS=$*
     set ${SampVars:=""}
 
     # 3: Loop through each of the variables
@@ -27,39 +28,13 @@ if [ "$1" = 'samp' ]; then
         # 7: Check if there's already a line with the respective key in the server.cfg
         # 7.1 - True: Replace the current value with the new value
         # 7.2 - False: Add new line to server.cfg with the key-value pair
-        grep -q "$key" server.cfg && \
-            sed -i "s/$key .*/$key $value/" server.cfg 2>/dev/null || \
-            sed -i "$ a\\$key $value" server.cfg 2>/dev/null
+        grep -q "$key" samp-svr/server.cfg && \
+            sed -i "s/$key .*/$key $value/" samp-svr/server.cfg 2>/dev/null || \
+            sed -i "$ a\\$key $value" samp-svr/server.cfg 2>/dev/null
     done
 
     IFS=$OLDIFS
-
-    server_start() {
-        exec nohup ./samp03svr &
-    }
-
-    server_stop() {
-        killall samp03svr
-    }
-
-    server_restart() {
-        server_stop
-        sleep 1
-        server_start
-    }
-
-    case "$2" in
-        'start')
-            server_start
-            ;;
-        'stop')
-            server_stop
-            ;;
-        'restart')
-            server_restart
-            ;;
-        *) echo "Usage: $0 $1 start/stop/restart"
-    esac
+    set $OLDARGS
 fi
 
 exec "$@"
