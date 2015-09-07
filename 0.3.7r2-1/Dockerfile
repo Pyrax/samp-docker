@@ -23,8 +23,8 @@ RUN wget http://files.sa-mp.com/samp037svr_R2-1.tar.gz \
 COPY samp.sh /usr/local/bin/samp
 COPY docker-entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /usr/local/bin/samp
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /usr/local/bin/samp \
+ && chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
