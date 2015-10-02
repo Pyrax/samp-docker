@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:jessie
 
 MAINTAINER Pyrax <piranhadev@gmail.com>
 
