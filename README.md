@@ -1,4 +1,4 @@
-SA-MP Docker container
+SA-MP Docker container [![Docker pulls](https://img.shields.io/docker/pulls/pyrax/samp.svg "Number of Docker pulls")](https://hub.docker.com/r/pyrax/samp/)
 ======================
 
 This repository features some Dockerfiles for setting up a SA-MP server through Docker containers.
